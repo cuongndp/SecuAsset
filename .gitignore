@@ -1,4 +1,16 @@
+﻿# .NET
+bin/
+obj/
+*.user
+*.suo
 .vs/
-**/bin/
-**/obj/
-*.csproj.user
+
+# Biến môi trường
+.env
+appsettings.Development.json
+# Tệp tải lên khi chạy local
+uploads/
+
+# Hệ điều hành
+.DS_Store
+Thumbs.db
