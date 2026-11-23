@@ -24,7 +24,7 @@ builder.Services.AddSingleton<IConnectionMultiplexer>(_ =>
         AbortOnConnectFail = false,
         ConnectTimeout = 5000
     }));
-
+ 
 // 3. JWT
 var jwt = builder.Configuration.GetSection("Jwt");
 var jwtKey = jwt["Key"] ?? throw new InvalidOperationException("Thiếu Jwt:Key trong cấu hình");
