@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tài sản được giao - Guardly</title>
+<link rel="stylesheet" href="css/app.css">
+<link rel="stylesheet" href="css/assigned-assets.css">
+</head>
+<body>
+
+<header class="topbar" id="topbar"></header>
+
+<main class="page">
+  <nav class="bc" aria-label="Đường dẫn">
+    <a href="dashboard.html" aria-label="Trang chủ">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
+    </a>
+    <span class="sep">›</span>
+    <a href="profile.html" id="bcProfile">Hồ sơ</a>
+    <span class="sep">›</span>
+    <strong>Tài sản được giao</strong>
+  </nav>
+
+  <div class="viewas" id="viewAs" hidden>
+    <label for="userSelect">Xem tài sản được giao cho người dùng:</label>
+    <select id="userSelect"></select>
+    <span class="tag">chỉ Quản trị viên</span>
+  </div>
+
+  <section class="card">
+    <div class="tabs" role="tablist" aria-label="Mục tài sản được giao">
+      <button class="tab is-active" role="tab" data-tab="info" aria-selected="true">Thông tin</button>
+      <button class="tab" role="tab" data-tab="assets" aria-selected="false">Tài sản <span class="count" id="cntAssets">0</span></button>
+      <button class="tab" role="tab" data-tab="schedules" aria-selected="false">Lịch bảo trì <span class="count" id="cntSched">0</span></button>
+    </div>
+
+    <!-- Tab 1: Thông tin -->
+    <div class="panel" id="panel-info" role="tabpanel">
+      <dl class="list" id="infoList"></dl>
+      <aside class="side" id="sidePane"></aside>
+    </div>
+
+    <!-- Tab 2: Tài sản -->
+    <div class="panel panel--single" id="panel-assets" role="tabpanel" hidden>
+      <h3 class="sec" id="assetTitle">Tài sản được giao</h3>
+      <div class="toolbar">
+        <input class="input" id="assetQ" type="search" placeholder="Lọc theo mã, tên, số serial" aria-label="Lọc tài sản">
+        <select class="input" id="assetStatus" aria-label="Lọc theo trạng thái"></select>
+        <span class="total" id="assetCount"></span>
+        <button type="button" class="btn btn--ghost" id="csvBtn">Xuất CSV</button>
+        <button type="button" class="btn btn--ghost" id="printBtn">In danh sách</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Mã tài sản</th><th>Tên tài sản</th><th>Danh mục</th><th>Vị trí</th><th>Số serial</th><th>Trạng thái</th><th>Hạn bảo hành</th></tr></thead>
+          <tbody id="assetBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Tab 3: Lịch bảo trì -->
+    <div class="panel panel--single" id="panel-schedules" role="tabpanel" hidden></div>
+  </section>
+</main>
+
+<script src="js/mock-data.js"></script>
+<script src="js/common.js"></script>
+<script src="js/assigned-assets.js"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+.count {
+  display: inline-block;
+  min-width: 20px;
+  margin-left: 6px;
+  padding: 0 6px;
+  border-radius: 10px;
+  background: #e8eeed;
+  color: var(--brand);
+  font-size: 12px;
+  line-height: 20px;
+  text-align: center;
+}
+
+.toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 14px; }
+.toolbar .input { width: 260px; max-width: 100%; }
+.toolbar select.input { width: 190px; }
+.toolbar .total { margin-left: auto; color: var(--muted); }
+
+.mono { font-family: ui-monospace, Consolas, monospace; font-size: 13px; }
+td .badge { margin-left: 6px; }
+td .badge:first-child { margin-left: 0; }
+tr.is-hit td { background: #fff6d6; }
+td.empty { padding: 28px 0; text-align: center; color: var(--muted); }
+
+.row dd a { color: var(--brand); }
+a.btn { text-decoration: none; }
+
+@media print {
+  .topbar, .bc, .viewas, .tabs, .toolbar, .toast { display: none !important; }
+  body { background: #fff; }
+  .card { border: 0; }
+  .page { padding: 0; max-width: none; }
+}
