@@ -3,9 +3,11 @@ import { ADMIN_MENU } from './layouts/MainLayout';
 import DashboardAdmin from './pages/admin/DashboardAdmin';
 import UsersPage from './pages/admin/UsersPage';
 import PermissionsPage from './pages/admin/PermissionsPage';
+import CategoriesLocationsPage from './pages/admin/CategoriesLocationsPage';
+import StatusLabelsPage from './pages/admin/StatusLabelsPage';
 
 function App() {
-  const [currentPath, setCurrentPath] = useState('/admin/permissions');
+  const [currentPath, setCurrentPath] = useState('/admin/status-labels');
 
   const renderPage = () => {
     switch (currentPath) {
@@ -15,6 +17,11 @@ function App() {
         return <UsersPage />;
       case '/admin/permissions':
         return <PermissionsPage />;
+      case '/admin/catalog':
+        return <CategoriesLocationsPage />;
+      case '/admin/status-labels':
+      case '/admin/statuses':
+        return <StatusLabelsPage />;
       default:
         return (
           <div style={{ padding: '32px', color: '#475569' }}>
@@ -27,7 +34,6 @@ function App() {
 
   return (
     <div style={{ display: 'flex', minHeight: '100vh', background: '#f8fafc', fontFamily: 'system-ui, sans-serif' }}>
-      {/* Thanh menu bên trái (Sidebar 8 mục) */}
       <aside
         style={{
           width: '250px',
@@ -70,7 +76,6 @@ function App() {
         })}
       </aside>
 
-      {/* Khu vực nội dung chính bên phải */}
       <main style={{ flex: 1, overflowX: 'auto' }}>
         {renderPage()}
       </main>
