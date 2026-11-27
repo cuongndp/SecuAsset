@@ -1,0 +1,414 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Danh sách bàn giao | Guardly</title>
+
+    <link rel="stylesheet" href="css/handover.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <h1>◇ Guardly</h1>
+            <span>HỆ THỐNG QUẢN TRỊ</span>
+        </div>
+
+        <div class="sidebar-label">KHÔNG GIAN LÀM VIỆC</div>
+
+        <nav class="sidebar-nav">
+
+            <a href="#" class="nav-item">
+                <span class="nav-icon">▦</span>
+                Tổng quan
+            </a>
+
+            <a href="#" class="nav-item">
+                <span class="nav-icon">▣</span>
+                Tài sản
+            </a>
+
+            <a href="#" class="nav-item active">
+                <span class="nav-icon">⇄</span>
+                Bàn giao
+            </a>
+
+            <a href="#" class="nav-item">
+                <span class="nav-icon">▤</span>
+                Kiểm kê
+            </a>
+
+            <a href="#" class="nav-item">
+                <span class="nav-icon">▧</span>
+                Báo cáo
+            </a>
+
+            <a href="#" class="nav-item">
+                <span class="nav-icon">◷</span>
+                Nhật ký hoạt động
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+            <button type="button" id="restoreBtn">
+                Khôi phục dữ liệu mẫu
+            </button>
+            <span>Phiên bản 2.4.0</span>
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN -->
+    <main class="main">
+
+        <!-- HEADER -->
+        <header class="header">
+
+            <div class="breadcrumb">
+                <span>Quản trị hệ thống</span>
+                <span>/</span>
+                <strong>Bàn giao</strong>
+            </div>
+
+            <div class="header-right">
+
+                <div class="storage-status">
+                    <span class="status-dot"></span>
+                    Dữ liệu lưu trên trình duyệt này
+                </div>
+
+                <div class="user-info">
+                    <strong>Nguyễn Minh Anh</strong>
+                    <span>Quản trị viên</span>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- PAGE HEADING -->
+        <section class="page-heading">
+
+            <div>
+                <div class="eyebrow">QUẢN LÝ / BÀN GIAO</div>
+
+                <h2>Danh sách bàn giao</h2>
+
+                <p>
+                    Cấp phát, thu hồi và điều chuyển tài sản giữa các phòng ban, người sử dụng.
+                </p>
+            </div>
+
+            <div class="heading-actions">
+
+                <button class="btn btn-outline" id="exportBtn">
+                    Xuất Excel
+                </button>
+
+                <button class="btn btn-primary" id="addBtn">
+                    + Tạo phiếu bàn giao
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- CONTENT -->
+        <section class="content">
+
+            <!-- FILTER -->
+            <div class="filter-card">
+
+                <div class="filter-title">
+                    <strong>Tìm kiếm phiếu bàn giao</strong>
+                    <span>
+                        Tra cứu theo mã phiếu, tên tài sản, người giao hoặc người nhận
+                    </span>
+                </div>
+
+                <div class="filter-grid">
+
+                    <div class="form-group">
+                        <label for="searchInput">Tìm kiếm</label>
+                        <input
+                            type="text"
+                            id="searchInput"
+                            placeholder="Nhập mã phiếu hoặc tên tài sản..."
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="typeFilter">Loại phiếu</label>
+                        <select id="typeFilter">
+                            <option value="">Tất cả loại</option>
+                            <option>Cấp phát</option>
+                            <option>Thu hồi</option>
+                            <option>Điều chuyển</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="departmentFilter">Phòng ban</label>
+                        <select id="departmentFilter">
+                            <option value="">Tất cả phòng ban</option>
+                            <option>Kế toán</option>
+                            <option>Hành chính</option>
+                            <option>Kinh doanh</option>
+                            <option>Công nghệ thông tin</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="statusFilter">Trạng thái</label>
+                        <select id="statusFilter">
+                            <option value="">Tất cả trạng thái</option>
+                            <option>Chờ xác nhận</option>
+                            <option>Hoàn tất</option>
+                            <option>Đã hủy</option>
+                        </select>
+                    </div>
+
+                    <button class="btn btn-primary filter-btn" id="filterBtn">
+                        Lọc
+                    </button>
+
+                </div>
+
+                <div class="filter-summary">
+                    <strong id="totalCount">0 phiếu</strong>
+                    <span id="pendingCount">Chờ xác nhận: 0</span>
+                    <span id="doneCount">Hoàn tất: 0</span>
+                    <span id="cancelCount">Đã hủy: 0</span>
+                </div>
+
+            </div>
+
+
+            <!-- TABLE -->
+            <div class="table-card">
+
+                <div class="table-heading">
+
+                    <h3>Danh sách phiếu bàn giao</h3>
+
+                    <span id="tableTotal">
+                        Tổng cộng 0 phiếu
+                    </span>
+
+                </div>
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th class="checkbox-col">
+                                    <input type="checkbox" id="selectAll">
+                                </th>
+                                <th>MÃ PHIẾU ↑</th>
+                                <th>TÀI SẢN</th>
+                                <th>LOẠI PHIẾU</th>
+                                <th>NGƯỜI GIAO</th>
+                                <th>NGƯỜI NHẬN</th>
+                                <th>PHÒNG BAN</th>
+                                <th>NGÀY BÀN GIAO</th>
+                                <th>TRẠNG THÁI</th>
+                                <th>THAO TÁC</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="handoverTableBody">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+                <div class="table-footer">
+
+                    <span id="pageInfo">
+                        Hiển thị 0 phiếu
+                    </span>
+
+                    <div class="pagination">
+
+                        <button id="prevPage" type="button">
+                            ‹
+                        </button>
+
+                        <button class="active" id="currentPage" type="button">
+                            1
+                        </button>
+
+                        <button id="nextPage" type="button">
+                            ›
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- MODAL THÊM / SỬA -->
+<div class="modal-overlay" id="handoverModal">
+
+    <div class="modal">
+
+        <div class="modal-header">
+
+            <div>
+                <h3 id="modalTitle">Tạo phiếu bàn giao</h3>
+                <p>Nhập thông tin chi tiết của phiếu bàn giao.</p>
+            </div>
+
+            <button class="close-btn" id="closeModal" type="button">
+                &times;
+            </button>
+
+        </div>
+
+        <form id="handoverForm">
+
+            <div class="modal-grid">
+
+                <div class="form-group">
+                    <label for="hCode">Mã phiếu *</label>
+                    <input id="hCode" required placeholder="VD: PBG-0009">
+                </div>
+
+                <div class="form-group">
+                    <label for="hType">Loại phiếu *</label>
+                    <select id="hType" required>
+                        <option value="">Chọn loại phiếu</option>
+                        <option>Cấp phát</option>
+                        <option>Thu hồi</option>
+                        <option>Điều chuyển</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="hAsset">Tên tài sản *</label>
+                    <input id="hAsset" required placeholder="Nhập tên tài sản">
+                </div>
+
+                <div class="form-group">
+                    <label for="hAssetCode">Mã tài sản *</label>
+                    <input id="hAssetCode" required placeholder="VD: TS-0001">
+                </div>
+
+                <div class="form-group">
+                    <label for="hFrom">Người giao *</label>
+                    <input id="hFrom" required placeholder="Nhập tên người giao">
+                </div>
+
+                <div class="form-group">
+                    <label for="hTo">Người nhận *</label>
+                    <input id="hTo" required placeholder="Nhập tên người nhận">
+                </div>
+
+                <div class="form-group">
+                    <label for="hDepartment">Phòng ban *</label>
+                    <select id="hDepartment" required>
+                        <option value="">Chọn phòng ban</option>
+                        <option>Kế toán</option>
+                        <option>Hành chính</option>
+                        <option>Kinh doanh</option>
+                        <option>Công nghệ thông tin</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="hDate">Ngày bàn giao *</label>
+                    <input id="hDate" type="date" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="hStatus">Trạng thái *</label>
+                    <select id="hStatus" required>
+                        <option>Chờ xác nhận</option>
+                        <option>Hoàn tất</option>
+                        <option>Đã hủy</option>
+                    </select>
+                </div>
+
+                <div class="form-group full">
+                    <label for="hNote">Ghi chú</label>
+                    <textarea id="hNote" placeholder="Tình trạng tài sản khi bàn giao, phụ kiện đi kèm..."></textarea>
+                </div>
+
+            </div>
+
+            <div class="modal-actions">
+
+                <button type="button" class="btn btn-outline" id="cancelModal">
+                    Hủy
+                </button>
+
+                <button type="submit" class="btn btn-primary">
+                    Lưu phiếu
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- MODAL CHI TIẾT -->
+<div class="modal-overlay" id="detailModal">
+
+    <div class="modal detail-modal">
+
+        <div class="modal-header">
+
+            <div>
+                <h3>Chi tiết phiếu bàn giao</h3>
+                <p>Thông tin đầy đủ về phiếu bàn giao.</p>
+            </div>
+
+            <button class="close-btn" id="closeDetail" type="button">
+                &times;
+            </button>
+
+        </div>
+
+        <div class="detail-content" id="detailContent"></div>
+
+        <div class="modal-actions">
+            <button class="btn btn-outline" id="closeDetailBtn" type="button">
+                Đóng
+            </button>
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="js/handover.js" defer></script>
+
+</body>
+</html>
