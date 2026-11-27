@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { ADMIN_MENU } from './layouts/MainLayout';
 import DashboardAdmin from './pages/admin/DashboardAdmin';
 import UsersPage from './pages/admin/UsersPage';
+import PermissionsPage from './pages/admin/PermissionsPage';
 
 function App() {
-  const [currentPath, setCurrentPath] = useState('/admin/users');
+  const [currentPath, setCurrentPath] = useState('/admin/permissions');
 
   const renderPage = () => {
     switch (currentPath) {
@@ -12,6 +13,8 @@ function App() {
         return <DashboardAdmin />;
       case '/admin/users':
         return <UsersPage />;
+      case '/admin/permissions':
+        return <PermissionsPage />;
       default:
         return (
           <div style={{ padding: '32px', color: '#475569' }}>
