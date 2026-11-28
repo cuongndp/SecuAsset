@@ -5,9 +5,10 @@ import UsersPage from './pages/admin/UsersPage';
 import PermissionsPage from './pages/admin/PermissionsPage';
 import CategoriesLocationsPage from './pages/admin/CategoriesLocationsPage';
 import StatusLabelsPage from './pages/admin/StatusLabelsPage';
+import LocationTreePage from './pages/admin/LocationTreePage';
 
 function App() {
-  const [currentPath, setCurrentPath] = useState('/admin/status-labels');
+  const [currentPath, setCurrentPath] = useState('/admin/locations');
 
   const renderPage = () => {
     switch (currentPath) {
@@ -20,8 +21,9 @@ function App() {
       case '/admin/catalog':
         return <CategoriesLocationsPage />;
       case '/admin/status-labels':
-      case '/admin/statuses':
         return <StatusLabelsPage />;
+      case '/admin/locations':
+        return <LocationTreePage />;
       default:
         return (
           <div style={{ padding: '32px', color: '#475569' }}>
