@@ -6,9 +6,10 @@ import PermissionsPage from './pages/admin/PermissionsPage';
 import CategoriesLocationsPage from './pages/admin/CategoriesLocationsPage';
 import StatusLabelsPage from './pages/admin/StatusLabelsPage';
 import LocationTreePage from './pages/admin/LocationTreePage';
+import AuditLogsPage from './pages/admin/AuditLogsPage';
 
 function App() {
-  const [currentPath, setCurrentPath] = useState('/admin/locations');
+  const [currentPath, setCurrentPath] = useState('/admin/audit-logs');
 
   const renderPage = () => {
     switch (currentPath) {
@@ -24,6 +25,8 @@ function App() {
         return <StatusLabelsPage />;
       case '/admin/locations':
         return <LocationTreePage />;
+      case '/admin/audit-logs':
+        return <AuditLogsPage />;
       default:
         return (
           <div style={{ padding: '32px', color: '#475569' }}>
