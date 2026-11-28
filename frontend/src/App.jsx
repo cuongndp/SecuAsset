@@ -7,9 +7,10 @@ import CategoriesLocationsPage from './pages/admin/CategoriesLocationsPage';
 import StatusLabelsPage from './pages/admin/StatusLabelsPage';
 import LocationTreePage from './pages/admin/LocationTreePage';
 import AuditLogsPage from './pages/admin/AuditLogsPage';
+import SystemSettingsPage from './pages/admin/SystemSettingsPage';
 
 function App() {
-  const [currentPath, setCurrentPath] = useState('/admin/audit-logs');
+  const [currentPath, setCurrentPath] = useState('/admin/dashboard');
 
   const renderPage = () => {
     switch (currentPath) {
@@ -27,6 +28,8 @@ function App() {
         return <LocationTreePage />;
       case '/admin/audit-logs':
         return <AuditLogsPage />;
+      case '/admin/settings':
+        return <SystemSettingsPage />;
       default:
         return (
           <div style={{ padding: '32px', color: '#475569' }}>
